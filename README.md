@@ -26,5 +26,5 @@ A princípio usarei python para  o controle do jogo (E no futuro pretendo reescr
 My name is Fabrício, I am graduating in a Bachelor's degree in Pure Mathematics and another one in Science and Technology at a Federal University in Brasil (Universidade Federal do ABC). 
 
 In 2019 I started to lose interest in the field of Pure Mathematics and started attending programming classes at my university. After a few months I got accepted in an internship in the largest Bank in South America (Itaú Unibanco) and later was hired fulltime, my team's responsible for automating processes in various areas related to finances and risk management.  
-Since all of my projects so far were internal projects, I started this project to enrich my resume by applyng my knowledge in a public manner.
+Since all of my projects so far were internal projects, I started this project to enrich my resume by appliyng my knowledge in a public manner.
 
