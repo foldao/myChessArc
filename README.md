@@ -2,10 +2,10 @@
 A project to practice, study and to use it in my resume.
 
 # Intro - EN
-This project is meant to be a chess game engine, with both console and web implementations applying TDD and Clean Architecture. I plan to use python for the main engine (and later rewrite it to study GoLang), in the console implementation i plan to use cache to store game data and pygame to render the match. In the web I plan to use redis to store match data and fastApi to distribute web requests and a front end in react, and deploy it in Heroku.
+This project is meant to be a chess game engine, with both console and web implementations applying TDD and Clean Architecture. I plan on using python for the main engine (and later rewrite it to study GoLang), in the console implementation I intend to use cache to store game data and pygame to render the match. In the web will be using redis to store match data and fastApi to distribute web requests and a frontend in react, and deploy it in Heroku.
 
 # Introdução  - PT
-Este Projeto seerá uma engine pra um jogo de xadrez, com uma implementação web e uma implementação console aplicando conhecimentos como Clean achitecture e TDD. 
+Este Projeto será uma engine pra um jogo de xadrez, com uma implementação web e uma implementação console aplicando conhecimentos como Clean achitecture e TDD. 
 A princípio usarei python para  o controle do jogo (E no futuro pretendo reescrever em Go para estudar), para a implementação de console pretendo salvar em memória os dados da partida e renderizar o jogo com pygame. Na versão web pretendo guardar os dados em redis e fazer um BFF em FastApi e um frontend em react no ambiente Heroku
 
 # Project epics
