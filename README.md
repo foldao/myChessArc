@@ -17,10 +17,10 @@ A princípio usarei python para  o controle do jogo (E no futuro pretendo reescr
 
 # Épicos do projeto
     game engine A fazer
-    implementação pygame  not done
-    implementação fast api  not done
-    implementação react  not done
-    deploy no Heroku  not done
+    implementação pygame  A fazer
+    implementação fast api  A fazer
+    implementação react  A fazer
+    deploy no Heroku  A fazer
 
 # About Myself - EN
 My name is Fabrício, I am nearly graduating in a Bachelor's degree in Pure Mathematics and another one in Science and Technology at a Federal University in Brasil (Universidade Federal do ABC). 
