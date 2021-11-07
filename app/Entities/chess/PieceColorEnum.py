@@ -1,7 +1,6 @@
 from enum import IntEnum
 
+
 class PieceColorEnum(IntEnum):
-    WHITE=1
-    BLACK=-1
-
-
+    WHITE = 1
+    BLACK = -1
