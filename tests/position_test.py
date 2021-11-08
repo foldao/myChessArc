@@ -1,4 +1,4 @@
-from app.Entities.chess.Position import Position
+from src.Entities.chess.Position import Position
 import pytest
 def test_position_properly_created():
     pos=Position(3,5)
