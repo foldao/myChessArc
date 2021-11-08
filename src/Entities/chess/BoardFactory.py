@@ -19,8 +19,9 @@ class BoardFactory:
 
     @staticmethod
     def create_empty_board() -> Board:
-        state:Dict[Position,Optional[AbstractPiece]] = {Position(i, j): None for i in range(8) for j in range(8)}
-        return Board(state,{})
+        state: Dict[Position, Optional[AbstractPiece]] = {
+            Position(i, j): None for i in range(8) for j in range(8)}
+        return Board(state, {})
 
     def get_board(self, schema: str | Dict[str, List[str]]) -> Board:
         raise NotImplementedError
