@@ -9,9 +9,11 @@ from app.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
 @dataclass
 class Board:
     state: Dict[Position, AbstractPiece]
-    black_tower_left_has_moved: bool = False
-    black_tower_right_has_moved: bool = False
-    black_king_left_has_moved: bool = False
-    white_king_left_has_moved: bool = False
-    white_tower_right_has_moved: bool = False
-    white_tower_left_has_moved: bool = False
+
+    
+    def set_position_by_indexes(self,x:int,y:int, piece:AbstractPiece):
+        self.state[Position(x,y)]=piece
+        
+    def get_position_in_indexes(self,x:int,y:int):
+        return self.state[Position(x,y)]
+    
