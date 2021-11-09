@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Optional, Tuple
 
 
 @dataclass(slots=True)
@@ -18,6 +18,11 @@ class Position:
     @staticmethod
     def tuple_sum(a: Tuple[int, ...], b: Tuple[int, ...]) -> Tuple[int, ...]:
         return tuple(map(sum, zip(a, b)))
+
+    @staticmethod
+    def try_to_create(x: int, y: int) -> Optional['Position']:
+        if Position.is_valid(x, y):
+            return Position(x, y)
 
     def to_string(self):
         return chr(97+self.x)+str(self.y+1)
