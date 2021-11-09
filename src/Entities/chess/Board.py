@@ -10,6 +10,7 @@ from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
 class Board:
     state: Dict[Position, Optional[AbstractPiece]]
     king_positions: Dict[str, Position]
+    turn: int = 1
 
     def set_piece_by_indexes(self, x: int, y: int, piece: Optional[AbstractPiece]):
         self.state[Position(x, y)] = piece
