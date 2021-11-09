@@ -1,5 +1,7 @@
 from typing import List
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece, get_possible_moves_of_line_attack
+from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.chess.ChessPieces.utils import get_possible_moves_of_line_attack
+
 from src.Entities.chess.Position import Position
 import src.Entities.chess.Board as bd
 
