@@ -1,6 +1,7 @@
 from typing import List, Tuple
 from src.Entities.chess.Board import Board
 from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.chess.Position import Position
 
 
@@ -15,7 +16,7 @@ def get_possible_moves_of_line_attack(board: Board, position: Position, piece: A
             if Position.is_valid(*next_on_dir):
                 pos = Position(*next_on_dir)
                 match board.get_piece_by_position(pos):
-                    case  None:
+                    case  EmptyPosition():
                         movements.append(pos)
                         next_on_dir = Position.tuple_sum(next_on_dir, dir)
                         should_continue = True

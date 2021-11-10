@@ -1,5 +1,6 @@
 from typing import List
 from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.chess.Position import Position
 import src.Entities.chess.Board as bd
 
@@ -13,9 +14,9 @@ class Horse(AbstractPiece):
             if evaluated_position := Position.try_to_create(*(
                     Position.tuple_sum(dir, position.as_tuple()))):
                 match board.get_piece_by_position(evaluated_position):
+                    case EmptyPosition():
+                        movements.append(evaluated_position)
                     case AbstractPiece(color=x):
                         if x != self.color:
                             movements.append(evaluated_position)
-                    case None:
-                        movements.append(evaluated_position)
         return movements

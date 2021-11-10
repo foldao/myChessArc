@@ -2,6 +2,7 @@ from typing import Dict, List, Optional
 from src.Entities.chess.Position import Position
 from src.Entities.chess.Board import Board
 from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
 
 
 class BoardFactory:
@@ -19,8 +20,8 @@ class BoardFactory:
 
     @staticmethod
     def create_empty_board() -> Board:
-        state: Dict[Position, Optional[AbstractPiece]] = {
-            Position(i, j): None for i in range(8) for j in range(8)}
+        state: Dict[Position, AbstractPiece] = {
+            Position(i, j): EmptyPosition() for i in range(8) for j in range(8)}
         return Board(state, {})
 
     def get_board(self, schema: str | Dict[str, List[str]]) -> Board:

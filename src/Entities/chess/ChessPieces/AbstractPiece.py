@@ -1,9 +1,11 @@
 from __future__ import annotations
 # pyright: reportUnknownParameterType=false, reportMissingParameterType=false
 from abc import ABC, abstractmethod
-from typing import List
+from typing import TYPE_CHECKING, List
 from src.Entities.chess.PieceColorEnum import PieceColorEnum
 from src.Entities.chess.Position import Position
+if TYPE_CHECKING:
+    from src.Entities.chess.Board import Board
 
 
 class AbstractPiece(ABC):
@@ -16,13 +18,13 @@ class AbstractPiece(ABC):
         self.name = name
 
     @abstractmethod
-    def get_possible_moves(self, board, position: Position) -> List[Position]:
+    def get_possible_moves(self, board: Board, position: Position) -> List[Position]:
 
         raise NotImplementedError
 
     def get_color(self):
         return self.color
 
-    def update_state(self,  board, position: Position):
+    def update_state(self,  board: Board, position: Position):
 
         self.has_moved = True
