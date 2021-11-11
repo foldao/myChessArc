@@ -15,7 +15,8 @@ class King(AbstractPiece):
 
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: List[Position] = []
-        directions = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+        directions = [(1, 1), (-1, 1), (1, -1), (-1, -1),
+                      (1, 0), (-1, 0), (0, -1), (0, 1)]
         for dir in directions:
             if evaluated_position := Position.try_to_create(*(
                     Position.tuple_sum(dir, position.as_tuple()))):
@@ -58,21 +59,23 @@ class King(AbstractPiece):
                                 response.append(end_position)
         return response
 
-    def execute_castle(self, board: bd.Board, start_position: Position, end_position: Position):
+    @staticmethod
+    def execute_castle(board: bd.Board, start_position: Position, end_position: Position):
         y = start_position.y
         rook_x = 0 if start_position.x > end_position.x else 7
         rook_position = Position(rook_x, y)
         rook_piece = board.state[rook_position]
-        king_end_x = 2 if rook_x == 0 else 6
         rook_end_x = 3 if rook_x == 0 else 5
         rook_end_position = Position(rook_end_x, y)
+        king_end_x = 2 if rook_x == 0 else 6
         king_end_position = Position(king_end_x, y)
-        self.has_moved = True
+        king_piece = board.state[start_position]
+        king_piece.has_moved = True
         rook_piece.has_moved = True
-        board.set_piece_by_position(king_end_position, self)
+        board.set_piece_by_position(king_end_position, king_piece)
         board.set_piece_by_position(rook_end_position, rook_piece)
         board.set_piece_by_position(rook_position, EmptyPosition())
-        board.set_piece_by_position(start_position, rook_piece)
+        board.set_piece_by_position(start_position, EmptyPosition())
 
     def update_state(self,  board: bd.Board, position: Position):
         if not self.has_moved and position.x not in [3, 4, 5]:
