@@ -6,7 +6,7 @@ from src.Entities.chess.Position import Position
 
 def test_valid_position():
     board = BoardFactory.create_empty_board()
-    white_king = King(PieceColorEnum.WHITE, 'King')
+    white_king = King(PieceColorEnum.WHITE)
     board.set_piece_by_indexes(3, 3, white_king)
 
     moves = white_king.get_possible_moves(board, Position(3, 3))

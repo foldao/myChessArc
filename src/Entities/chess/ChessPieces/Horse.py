@@ -2,10 +2,14 @@ from typing import List
 from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.chess.Position import Position
+from src.Entities.chess.PieceColorEnum import PieceColorEnum
 import src.Entities.chess.Board as bd
 
 
 class Horse(AbstractPiece):
+    def __init__(self, color: PieceColorEnum) -> None:
+        super().__init__(color, "Horse")
+
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: List[Position] = []
         directions = [(1, 2), (1, -2), (-1, 2), (-1, -2),
