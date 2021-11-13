@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 import copy
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
+from src.Entities.PieceColorEnum import PieceColorEnum
 
-from src.Entities.chess.Position import Position
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.King import King
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.Position import Position
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.King import King
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 
 
 @dataclass
@@ -38,6 +38,15 @@ class Board:
         if self.check:
             if self.is_check_a_checkmate():
                 self.checkmate = True
+
+    def get_representation(self) -> Dict[Tuple[int, int], Tuple[str, int]]:
+        response: Dict[Tuple[int, int], Tuple[str, int]] = {}
+        for position in self.state:
+            piece = self.state[position]
+            if not isinstance(piece, EmptyPosition):
+                response[position.as_tuple()] = (
+                    piece.name, piece.get_color().value)
+        return response
 
     def is_check_a_checkmate(self) -> bool:
         color_in_check = self.check.get_opposing_color()
@@ -102,9 +111,9 @@ class Board:
     def get_piece_by_indexes(self, x: int, y: int):
         return self.state[Position(x, y)]
 
-    def set_piece_by_position(self, position: Position, piece: AbstractPiece):
+    def set_piece_by_position(self, position: Position, piece: AbstractPiece, is_a_move: bool = True):
         self.state[position] = piece
-        if piece:
+        if piece and is_a_move:
             piece.update_state(self, position)
 
     def get_piece_by_position(self, position: Position):

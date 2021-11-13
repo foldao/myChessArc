@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from typing import List, TYPE_CHECKING
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
 if TYPE_CHECKING:
-    import src.Entities.chess.Board as bd
+    import src.Entities.Board as bd
 
 
 class King(AbstractPiece):

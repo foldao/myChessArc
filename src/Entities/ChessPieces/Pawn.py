@@ -1,9 +1,9 @@
 from typing import List
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
-import src.Entities.chess.Board as bd
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
+import src.Entities.Board as bd
 
 
 class Pawn(AbstractPiece):
@@ -15,6 +15,7 @@ class Pawn(AbstractPiece):
 
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: List[Position] = []
+
         if (front_position := Position.try_to_create(*(Position.tuple_sum(position.as_tuple(), (0, self.color.value))))):
             match board.get_piece_by_position(front_position):
                 case EmptyPosition():

@@ -1,4 +1,4 @@
-from src.Entities.chess.Position import Position
+from src.Entities.Position import Position
 import pytest
 
 

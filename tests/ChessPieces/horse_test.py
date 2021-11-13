@@ -1,7 +1,7 @@
-from src.Entities.chess.BoardFactory import BoardFactory
-from src.Entities.chess.ChessPieces.Horse import Horse
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
+from src.Entities.BoardFactory import BoardFactory
+from src.Entities.ChessPieces.Horse import Horse
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
 
 
 def test_valid_position():

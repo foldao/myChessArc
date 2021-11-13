@@ -1,17 +1,19 @@
-from src.Entities.chess.BoardFactory import BoardFactory
-from src.Entities.chess.ChessPieces.King import King
-from src.Entities.chess.ChessPieces.Rook import Rook
-from src.Entities.chess.ChessPieces.Pawn import Pawn
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
+from src.Entities.BoardFactory import BoardFactory
+from src.Entities.ChessPieces.King import King
+from src.Entities.ChessPieces.Rook import Rook
+from src.Entities.ChessPieces.Pawn import Pawn
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
 # import pytest
 
 def test_valid_position():
     board = BoardFactory.create_empty_board()
     white_king = King(PieceColorEnum.WHITE)
     board.set_piece_by_indexes(3, 3, white_king)
-    board.set_piece_by_position(Position(2,3),Pawn(PieceColorEnum.WHITE))
-    board.set_piece_by_position(Position(2,2),Pawn(PieceColorEnum.BLACK))
+    board.set_piece_by_position(Position(2, 3), Pawn(
+        PieceColorEnum.WHITE), is_a_move=False)
+    board.set_piece_by_position(Position(2, 2), Pawn(
+        PieceColorEnum.BLACK), is_a_move=False)
     moves = white_king.get_possible_moves(board, Position(3, 3))
     assert Position(3, 4) in moves
     assert Position(4, 3) in moves

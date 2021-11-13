@@ -1,12 +1,12 @@
 
-from src.Entities.chess.BoardFactory import BoardFactory
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
-from src.Entities.chess.ChessPieces.King import King
-from src.Entities.chess.ChessPieces.Rook import Rook
-from src.Entities.chess.ChessPieces.Pawn import Pawn
-from src.Entities.chess.ChessPieces.Queen import Queen
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
+from src.Entities.BoardFactory import BoardFactory
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.ChessPieces.King import King
+from src.Entities.ChessPieces.Rook import Rook
+from src.Entities.ChessPieces.Pawn import Pawn
+from src.Entities.ChessPieces.Queen import Queen
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
 import pytest
 
 
@@ -37,7 +37,19 @@ def test_wong_turn_move():
     with pytest.raises(Exception):
         board.move(Position(4, 0), Position(4, 1))
     assert isinstance(board.get_piece_by_position(
-        Position(4, 1)), EmptyPosition)
+        Position(4, 1)), EmptyPosition
+    )
+
+
+def test_board_representation():
+    board = BoardFactory.create_empty_board()
+    pawn = Pawn(PieceColorEnum.WHITE)
+    board.set_piece_by_position(Position(1, 1), pawn, is_a_move=False)
+    board.set_piece_by_position(Position(3, 5), pawn, is_a_move=False)
+    representation = board.get_representation()
+    assert len(representation) == 2
+    assert (3, 5) in representation
+    assert representation[(1, 1)] == ('Pawn', 1)
 
 
 def test_non_available_move():

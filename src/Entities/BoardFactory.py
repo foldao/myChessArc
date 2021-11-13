@@ -1,29 +1,30 @@
 from typing import Dict, List
-from src.Entities.chess.ChessPieces.Bishop import Bishop
-from src.Entities.chess.ChessPieces.Horse import Horse
-from src.Entities.chess.ChessPieces.King import King
-from src.Entities.chess.ChessPieces.Pawn import Pawn
-from src.Entities.chess.ChessPieces.Queen import Queen
-from src.Entities.chess.ChessPieces.Rook import Rook
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-from src.Entities.chess.Position import Position
-from src.Entities.chess.Board import Board
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.ChessPieces.Bishop import Bishop
+from src.Entities.ChessPieces.Horse import Horse
+from src.Entities.ChessPieces.King import King
+from src.Entities.ChessPieces.Pawn import Pawn
+from src.Entities.ChessPieces.Queen import Queen
+from src.Entities.ChessPieces.Rook import Rook
+from src.Entities.PieceColorEnum import PieceColorEnum
+from src.Entities.Position import Position
+from src.Entities.Board import Board
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 
 
 class BoardFactory:
     schema: Dict[str, List[str]]
 
     def _validate_board(self, schema: str | Dict[str, List[str]]):
-        match schema:
-            case str():
-                self.schema = self._create_board_dict_from_string(schema)
+        pass
+        # match schema:
+        #     case str():
+        #         self.schema = self._create_board_dict_from_string(schema)
 
-            case dict():
-                self.schema = schema
-            case _:
-                raise Exception("Board can only be created from dict or str")
+        #     case dict():
+        #         self.schema = schema
+        #     case _:
+        #         raise Exception("Board can only be created from dict or str")
 
     @staticmethod
     def create_empty_board() -> Board:
@@ -62,7 +63,7 @@ class BoardFactory:
 
         return board
 
-    def get_board(self, schema: str | Dict[str, List[str]]) -> Board:
+    def board_to_json(self) -> None:
         raise NotImplementedError
 
     def _create_board_dict_from_string(self, board_json: str) -> Dict[str, List[str]]:

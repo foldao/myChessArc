@@ -1,9 +1,9 @@
 from typing import List
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
-from src.Entities.chess.Position import Position
-from src.Entities.chess.PieceColorEnum import PieceColorEnum
-import src.Entities.chess.Board as bd
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.Position import Position
+from src.Entities.PieceColorEnum import PieceColorEnum
+import src.Entities.Board as bd
 
 
 class Horse(AbstractPiece):

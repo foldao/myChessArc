@@ -1,8 +1,8 @@
 from typing import List, Tuple
-from src.Entities.chess.Board import Board
-from src.Entities.chess.ChessPieces.AbstractPiece import AbstractPiece
-from src.Entities.chess.ChessPieces.EmptyPosition import EmptyPosition
-from src.Entities.chess.Position import Position
+from src.Entities.Board import Board
+from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
+from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
+from src.Entities.Position import Position
 
 
 def get_possible_moves_of_line_attack(board: Board, position: Position, piece: AbstractPiece, directions: List[Tuple[int, int]]):
