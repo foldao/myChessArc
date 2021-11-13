@@ -1,4 +1,3 @@
-from typing import List
 from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.PieceColorEnum import PieceColorEnum
@@ -14,7 +13,7 @@ class Pawn(AbstractPiece):
         super().__init__(color, "Pawn")
 
     def get_possible_moves(self, board: bd.Board, position: Position):
-        movements: List[Position] = []
+        movements: list[Position] = []
 
         if (front_position := Position.try_to_create(*(Position.tuple_sum(position.as_tuple(), (0, self.color.value))))):
             match board.get_piece_by_position(front_position):

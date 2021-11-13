@@ -1,7 +1,7 @@
 from __future__ import annotations
 # pyright: reportUnknownParameterType=false, reportMissingParameterType=false
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 from src.Entities.PieceColorEnum import PieceColorEnum
 from src.Entities.Position import Position
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ class AbstractPiece(ABC):
         self.name = name
 
     @abstractmethod
-    def get_possible_moves(self, board: Board, position: Position) -> List[Position]:
+    def get_possible_moves(self, board: Board, position: Position) -> list[Position]:
 
         raise NotImplementedError
 

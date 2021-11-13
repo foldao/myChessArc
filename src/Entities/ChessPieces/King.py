@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING
 from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.PieceColorEnum import PieceColorEnum
@@ -14,7 +14,7 @@ class King(AbstractPiece):
         super().__init__(color, "King")
 
     def get_possible_moves(self, board: bd.Board, position: Position):
-        movements: List[Position] = []
+        movements: list[Position] = []
         directions = [(1, 1), (-1, 1), (1, -1), (-1, -1),
                       (1, 0), (-1, 0), (0, -1), (0, 1)]
         for dir in directions:
@@ -30,8 +30,8 @@ class King(AbstractPiece):
             movements += castle_position
         return movements
 
-    def can_castle(self, board: bd.Board, position: Position) -> List[Position]:
-        response: List[Position] = []
+    def can_castle(self, board: bd.Board, position: Position) -> list[Position]:
+        response: list[Position] = []
         position_tuple = position.as_tuple()
         if not board.check and not self.has_moved and position.x == 4:
             for dir in [(-4, 0), (3, 0)]:

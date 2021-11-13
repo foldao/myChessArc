@@ -1,4 +1,3 @@
-from typing import List
 from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.ChessPieces.utils import get_possible_moves_of_line_attack
 
@@ -12,7 +11,7 @@ class Bishop(AbstractPiece):
         super().__init__(color, "Bishop")
 
     def get_possible_moves(self, board: bd.Board, position: Position):
-        movements: List[Position] = []
+        movements: list[Position] = []
         directions = [(1, 1), (-1, 1), (1, -1), (-1, -1)]
         movements += get_possible_moves_of_line_attack(
             board, position, self, directions)

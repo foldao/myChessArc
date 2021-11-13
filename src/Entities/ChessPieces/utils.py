@@ -1,12 +1,11 @@
-from typing import List, Tuple
 from src.Entities.Board import Board
 from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 from src.Entities.Position import Position
 
 
-def get_possible_moves_of_line_attack(board: Board, position: Position, piece: AbstractPiece, directions: List[Tuple[int, int]]):
-    movements: List[Position] = []
+def get_possible_moves_of_line_attack(board: Board, position: Position, piece: AbstractPiece, directions: list[tuple[int, int]]):
+    movements: list[Position] = []
     pos_tuple = position.as_tuple()
     for dir in directions:
         next_on_dir = Position.tuple_sum(pos_tuple, dir)

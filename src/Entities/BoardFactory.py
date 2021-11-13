@@ -1,4 +1,3 @@
-from typing import Dict, List
 from src.Entities.ChessPieces.Bishop import Bishop
 from src.Entities.ChessPieces.Horse import Horse
 from src.Entities.ChessPieces.King import King
@@ -13,9 +12,9 @@ from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 
 
 class BoardFactory:
-    schema: Dict[str, List[str]]
+    schema: dict[str, list[str]]
 
-    def _validate_board(self, schema: str | Dict[str, List[str]]):
+    def _validate_board(self, schema: str | dict[str, list[str]]):
         pass
         # match schema:
         #     case str():
@@ -28,7 +27,7 @@ class BoardFactory:
 
     @staticmethod
     def create_empty_board() -> Board:
-        state: Dict[Position, AbstractPiece] = {
+        state: dict[Position, AbstractPiece] = {
             Position(i, j): EmptyPosition() for i in range(8) for j in range(8)}
         return Board(state)
 
@@ -66,5 +65,5 @@ class BoardFactory:
     def board_to_json(self) -> None:
         raise NotImplementedError
 
-    def _create_board_dict_from_string(self, board_json: str) -> Dict[str, List[str]]:
+    def _create_board_dict_from_string(self, board_json: str) -> dict[str, list[str]]:
         raise NotImplementedError

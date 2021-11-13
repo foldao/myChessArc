@@ -1,5 +1,5 @@
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional, Tuple
 
 
 @dataclass(slots=True)
@@ -16,11 +16,11 @@ class Position:
         return all([x <= 7, y <= 7, x >= 0, y >= 0])
 
     @staticmethod
-    def tuple_sum(a: Tuple[int, ...], b: Tuple[int, ...]) -> Tuple[int, ...]:
+    def tuple_sum(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
         return tuple(map(sum, zip(a, b)))
 
     @staticmethod
-    def try_to_create(x: int, y: int) -> Optional['Position']:
+    def try_to_create(x: int, y: int) -> Position | None:
         if Position.is_valid(x, y):
             return Position(x, y)
 
@@ -35,5 +35,5 @@ class Position:
             return False
         return o.as_tuple() == self.as_tuple()
 
-    def as_tuple(self) -> Tuple[int, int]:
+    def as_tuple(self) -> tuple[int, int]:
         return (self.x, self.y)

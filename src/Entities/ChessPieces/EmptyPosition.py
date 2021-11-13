@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 from src.Entities.ChessPieces.AbstractPiece import AbstractPiece
 from src.Entities.PieceColorEnum import PieceColorEnum
 if TYPE_CHECKING:
@@ -14,5 +14,5 @@ class EmptyPosition(AbstractPiece):
         self.name = "Empty"
         pass
 
-    def get_possible_moves(self, board: Board, position: Position) -> List[Position]:
+    def get_possible_moves(self, board: Board, position: Position) -> list[Position]:
         return []

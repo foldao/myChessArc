@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
+
 import copy
 from src.Entities.PieceColorEnum import PieceColorEnum
 
@@ -11,11 +11,11 @@ from src.Entities.ChessPieces.EmptyPosition import EmptyPosition
 
 @dataclass
 class Board:
-    state: Dict[Position, AbstractPiece]
+    state: dict[Position, AbstractPiece]
     turn: int = 1
     check: PieceColorEnum = PieceColorEnum.NONE
     checkmate: bool = False
-    check_attacker_position: Optional[Position] = None
+    check_attacker_position: Position | None = None
 
     def copy_of_self(self) -> 'Board':
         return copy.deepcopy(self)
@@ -39,8 +39,8 @@ class Board:
             if self.is_check_a_checkmate():
                 self.checkmate = True
 
-    def get_representation(self) -> Dict[Tuple[int, int], Tuple[str, int]]:
-        response: Dict[Tuple[int, int], Tuple[str, int]] = {}
+    def get_representation(self) -> dict[tuple[int, int], tuple[str, int]]:
+        response: dict[tuple[int, int], tuple[str, int]] = {}
         for position in self.state:
             piece = self.state[position]
             if not isinstance(piece, EmptyPosition):
@@ -63,7 +63,7 @@ class Board:
                     return False
         return True
 
-    def is_checkmate(self) -> Tuple[bool, PieceColorEnum]:
+    def is_checkmate(self) -> tuple[bool, PieceColorEnum]:
         return self.checkmate, self.check
 
     def update_state_of_check(self):
@@ -73,7 +73,7 @@ class Board:
             self.check_attacker_position = piece_position
         self.turn += 1
 
-    def color_threating_opposing_king(self, color: PieceColorEnum) -> Optional[Position]:
+    def color_threating_opposing_king(self, color: PieceColorEnum) -> Position | None:
         moves = self.get_all_possible_moves_from_color(
             color)
         for piece_position in moves:
@@ -88,12 +88,12 @@ class Board:
             raise Exception(
                 f"Invalid Move: Player's own king would be in check by {piece.name} in {piece_position.to_string()}")
 
-    def get_all_possible_moves_from_color(self, color: PieceColorEnum) -> Dict[Position, List[Position]]:
+    def get_all_possible_moves_from_color(self, color: PieceColorEnum) -> dict[Position, list[Position]]:
         pieces = filter(
             lambda x: self.state[x].get_color() == color, self.state)
         return {position: self.state[position].get_possible_moves(self, position) for position in pieces}
 
-    def validate_move_is_from_the_correct_player(self, piece: Optional[AbstractPiece]) -> bool:
+    def validate_move_is_from_the_correct_player(self, piece: AbstractPiece | None) -> bool:
         if piece == None:
             return False
         match self.turn % 2:
