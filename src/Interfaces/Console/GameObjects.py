@@ -1,0 +1,18 @@
+class UIColorsEnum:
+    BLACK = (0, 0, 0)
+    WHITE = (255, 255, 255)
+    BACKGROUND = (167, 85, 0)
+    HIGHLIGHT = (254, 252, 127)
+
+
+class ObjectSizes:
+    BORDER = 20
+    PANNEL_HEIGHT = 200
+    TILE_WIDTH = 80
+    TILE_HEIGHT = 80
+    TILE_SIZE = (TILE_WIDTH, TILE_HEIGHT)
+    BOARD_SIZE = (8*TILE_WIDTH, 8*TILE_HEIGHT)
+    WINDOW_SIZE = (BOARD_SIZE[0]+2*BORDER, BOARD_SIZE[1]+BORDER+PANNEL_HEIGHT)
+
+
+color_switch = {1: UIColorsEnum.WHITE, -1: UIColorsEnum.BLACK}
