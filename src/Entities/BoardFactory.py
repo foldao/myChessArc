@@ -34,31 +34,31 @@ class BoardFactory:
     @staticmethod
     def create_default_board() -> Board:
         board = BoardFactory.create_empty_board()
-        w = PieceColorEnum.WHITE
-        b = PieceColorEnum.BLACK
-        board.state[Position(0, 0)] = Rook(w)
-        board.state[Position(7, 0)] = Rook(w)
-        board.state[Position(0, 7)] = Rook(b)
-        board.state[Position(7, 7)] = Rook(b)
+        black = PieceColorEnum.BLACK
+        white = PieceColorEnum.WHITE
+        board.state[Position(0, 0)] = Rook(black)
+        board.state[Position(7, 0)] = Rook(black)
+        board.state[Position(0, 7)] = Rook(white)
+        board.state[Position(7, 7)] = Rook(white)
 
-        board.state[Position(1, 0)] = Horse(w)
-        board.state[Position(6, 0)] = Horse(w)
-        board.state[Position(1, 7)] = Horse(b)
-        board.state[Position(6, 7)] = Horse(b)
+        board.state[Position(1, 0)] = Horse(black)
+        board.state[Position(6, 0)] = Horse(black)
+        board.state[Position(1, 7)] = Horse(white)
+        board.state[Position(6, 7)] = Horse(white)
 
-        board.state[Position(2, 0)] = Bishop(w)
-        board.state[Position(5, 0)] = Bishop(w)
-        board.state[Position(2, 7)] = Bishop(b)
-        board.state[Position(5, 7)] = Bishop(b)
+        board.state[Position(2, 0)] = Bishop(black)
+        board.state[Position(5, 0)] = Bishop(black)
+        board.state[Position(2, 7)] = Bishop(white)
+        board.state[Position(5, 7)] = Bishop(white)
 
-        board.state[Position(3, 0)] = Queen(w)
-        board.state[Position(3, 7)] = Queen(b)
+        board.state[Position(3, 0)] = Queen(black)
+        board.state[Position(3, 7)] = Queen(white)
 
-        board.state[Position(4, 0)] = King(w)
-        board.state[Position(4, 7)] = King(b)
+        board.state[Position(4, 0)] = King(black)
+        board.state[Position(4, 7)] = King(white)
         for i in range(8):
-            board.state[Position(i, 1)] = Pawn(w)
-            board.state[Position(i, 6)] = Pawn(b)
+            board.state[Position(i, 1)] = Pawn(black)
+            board.state[Position(i, 6)] = Pawn(white)
 
         return board
 

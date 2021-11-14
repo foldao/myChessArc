@@ -49,7 +49,7 @@ def test_board_representation():
     representation = board.get_representation()
     assert len(representation) == 2
     assert (3, 5) in representation
-    assert representation[(1, 1)] == ('Pawn', 1)
+    assert representation[(1, 1)] == ('Pawn', -1)
 
 
 def test_non_available_move():
@@ -63,8 +63,8 @@ def test_non_available_move():
 
 def test_move_that_would_put_yourself_in_check():
     board = BoardFactory.create_empty_board()
-    board.state[Position(4, 0)] = King(PieceColorEnum.WHITE)
-    board.state[Position(3, 2)] = Pawn(PieceColorEnum.BLACK)
+    board.state[Position(4, 0)] = King(PieceColorEnum.BLACK)
+    board.state[Position(3, 2)] = Pawn(PieceColorEnum.WHITE)
     with pytest.raises(Exception):
         board.move(Position(4, 0), Position(4, 1))
     assert isinstance(board.get_piece_by_position(
@@ -74,19 +74,20 @@ def test_move_that_would_put_yourself_in_check():
 
 def test_check():
     board = BoardFactory.create_empty_board()
-    board.state[Position(4, 0)] = King(PieceColorEnum.WHITE)
+    board.state[Position(4, 4)] = King(PieceColorEnum.WHITE)
     board.state[Position(3, 2)] = Pawn(PieceColorEnum.BLACK)
     board.turn = 2
-    board.move(Position(3, 2), Position(3, 1))
+    assert board.check == PieceColorEnum.NONE
+    board.move(Position(3, 2), Position(3, 3))
     assert board.check == PieceColorEnum.BLACK
 
 
 def test_not_check_mate():
     board = BoardFactory.create_empty_board()
-    board.state[Position(4, 0)] = King(PieceColorEnum.WHITE)
+    board.state[Position(4, 4)] = King(PieceColorEnum.WHITE)
     board.state[Position(3, 2)] = Pawn(PieceColorEnum.BLACK)
     board.turn = 2
-    board.move(Position(3, 2), Position(3, 1))
+    board.move(Position(3, 2), Position(3, 3))
     assert not board.is_checkmate()[0]
 
 
