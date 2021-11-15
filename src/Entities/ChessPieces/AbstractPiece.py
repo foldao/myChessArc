@@ -16,7 +16,6 @@ class AbstractPiece(ABC):
     def __init__(self, color: PieceColorEnum) -> None:
         self.color = color
 
-
     @abstractmethod
     def get_possible_moves(self, board: Board, position: Position) -> list[Position]:
 

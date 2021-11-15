@@ -7,6 +7,7 @@ import src.Entities.Board as bd
 
 class Rook(AbstractPiece):
     name = "Rook"
+
     def __init__(self, color: PieceColorEnum) -> None:
         super().__init__(color)
 
