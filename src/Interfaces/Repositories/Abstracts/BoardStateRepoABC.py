@@ -7,12 +7,18 @@ class BoardStateRepoABC(ABC):
 
     @abstractmethod
     def get_board(self) -> Board:
+        """Returns Board, creates new if necessary
+
+        Returns:
+            Board: Board Instance
+        """
         raise NotImplementedError
 
     @abstractmethod
     def update_board(self, board: Board) -> None:
-        raise NotImplementedError
+        """Updates stored board Instance
 
-    @abstractmethod
-    def create_board(self) -> tuple[Board, int]:
+        Args:
+            board (Board): new Board version
+        """
         raise NotImplementedError
