@@ -10,8 +10,9 @@ if TYPE_CHECKING:
 
 
 class King(AbstractPiece):
+    name = "King"
     def __init__(self, color: PieceColorEnum) -> None:
-        super().__init__(color, "King")
+        super().__init__(color)
 
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: list[Position] = []

@@ -6,11 +6,11 @@ import src.Entities.Board as bd
 
 
 class Pawn(AbstractPiece):
-
+    name = "Pawn"
     turn_when_can_get_taken_en_passant: int = 0
 
     def __init__(self, color: PieceColorEnum) -> None:
-        super().__init__(color, "Pawn")
+        super().__init__(color)
 
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: list[Position] = []

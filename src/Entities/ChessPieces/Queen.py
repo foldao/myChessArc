@@ -7,8 +7,10 @@ import src.Entities.Board as bd
 
 
 class Queen(AbstractPiece):
+    name = "Queen"
+
     def __init__(self, color: PieceColorEnum) -> None:
-        super().__init__(color, "Queen")
+        super().__init__(color)
 
     def get_possible_moves(self, board: bd.Board, position: Position):
         movements: list[Position] = []
