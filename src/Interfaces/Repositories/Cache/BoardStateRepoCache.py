@@ -5,10 +5,10 @@ from src.UseCases.BoardMoveUseCase import BoardMoveUseCase
 
 
 class BoardStateRepoCache(BoardStateRepoABC):
-    board: Board | None
+    board: Board
 
     def get_board(self):
-        if not self.board:
+        if not hasattr(self, 'board'):
             self.board = BoardMoveUseCase.create_new_board()
         return self.board
 

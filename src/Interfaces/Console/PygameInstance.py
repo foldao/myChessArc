@@ -1,3 +1,4 @@
+from typing import Any
 import pygame
 from src.Entities.ChessPieces.Pawn import Pawn
 from src.Entities.ChessPieces.Rook import Rook
@@ -7,19 +8,34 @@ from src.Entities.ChessPieces.Queen import Queen
 from src.Entities.ChessPieces.Bishop import Bishop
 from src.Interfaces.Console.GameObjects import Assets, UIColorsEnum, ObjectSizes, color_switch
 from src.Interfaces.Console.GameMechanics import calculate_board_position_by_click
+from src.Interfaces.Repositories.Abstracts.BoardStateRepoABC import BoardStateRepoABC
+from src.UseCases.BoardMoveUseCase import BoardMoveUseCase
 
 
 class PygameInstance:
+
     window: pygame.surface.Surface
     is_highlighted: bool
     pieces: dict[tuple[str, int], pygame.surface.Surface] = {}
+    match_repo: BoardStateRepoABC
+    match_controller: BoardMoveUseCase
+    myfont : pygame.font.Font
+    rendered_objects:list[Any]
 
-    def run(self):
+    def __init__(self, match_repo: BoardStateRepoABC) -> None:
+        self.match_repo = match_repo
+        self.match_controller = BoardMoveUseCase(self.match_repo)
         pygame.init()
+        pygame.font.init() # you have to call this at the start, 
+                   # if you want to use this module.
+        self.myfont = pygame.font.SysFont('Comic Sans MS', 30)
         self.window = pygame.display.set_mode(ObjectSizes.WINDOW_SIZE)
         self.load_pieces()
-        self.start_board()
+        self.draw_board()
+        
         self.is_highlighted = False
+
+    def run(self):
         running = True
         while running:
             for event in pygame.event.get():
@@ -36,14 +52,18 @@ class PygameInstance:
 
     def highlight_list_of_positions(self, positions: list[tuple[int, int]]):
         set_of_positions: set[tuple[int, int]] = set(positions)
-        self.start_board(set_of_positions)
+        self.draw_board(set_of_positions)
 
     def handle_mouse_click(self):
         self.is_highlighted = True
         mouse_pos = pygame.mouse.get_pos()
-        board_pos = calculate_board_position_by_click(
-            *mouse_pos)
-        self.highlight_list_of_positions([board_pos])
+        try:
+            board_pos = calculate_board_position_by_click(
+                *mouse_pos)
+            self.highlight_list_of_positions([board_pos])
+        except Exception:
+            pass
+            
 
     def load_pieces(self) -> None:
         asts: dict[tuple[str, int], pygame.surface.Surface] = {}
@@ -61,10 +81,11 @@ class PygameInstance:
         asts[(Bishop.name, 1)] = pygame.image.load(Assets.BlackBishop)
         self.pieces = asts
 
-    def start_board(self, highlighted: set[tuple[int, int]] = set()):
+    def draw_board(self, highlighted: set[tuple[int, int]] = set()):
         pygame.draw.rect(self.window, UIColorsEnum.BACKGROUND,
                          (0, 0, *ObjectSizes.WINDOW_SIZE))
         color = -1
+        state, check, checkmate = self.match_controller.get_state()
         y = ObjectSizes.PANNEL_HEIGHT
         for j in range(8):
             color *= -1
@@ -72,10 +93,13 @@ class PygameInstance:
             for i in range(8):
                 rect_color = UIColorsEnum.HIGHLIGHT if (
                     i, j) in highlighted else color_switch[color]
+
                 # tiles[(i, j)] =
                 pygame.draw.rect(self.window, rect_color,
                                  (x, y, *ObjectSizes.TILE_SIZE))
-                self.window.blit(self.pieces[("Pawn", -color)], (x, y))
+                if (i, j) in state:
+                    self.window.blit(self.pieces[state[(i, j)]], (x, y))
+                    pygame.display.update()
                 color *= -1
                 x += ObjectSizes.TILE_WIDTH
             y += ObjectSizes.TILE_HEIGHT
