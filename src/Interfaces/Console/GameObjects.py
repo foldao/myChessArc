@@ -1,7 +1,7 @@
 class UIColorsEnum:
-    BLACK = (0, 0, 0)
+    BLACK = (226, 175, 78)
     WHITE = (255, 255, 255)
-    BACKGROUND = (167, 85, 0)
+    BACKGROUND = (95, 112, 120)
     HIGHLIGHT = (254, 252, 127)
 
 
@@ -16,3 +16,20 @@ class ObjectSizes:
 
 
 color_switch = {1: UIColorsEnum.WHITE, -1: UIColorsEnum.BLACK}
+
+
+class Assets:
+    BlackBishop = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackBishop.png'
+    BlackHorseR = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackHorseR.png'
+    BlackKing = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackKing.png'
+    BlackKnightL = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackKnightL.png'
+    BlackPawn = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackPawn.png'
+    BlackQueen = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackQueen.png'
+    BlackRook = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/BlackRook.png'
+    WhiteBishop = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteBishop.png'
+    WhiteKing = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteKing.png'
+    WhiteKnightL = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteKnightL.png'
+    WhiteKnightR = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteKnightR.png'
+    WhitePawn = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhitePawn.png'
+    WhiteQueen = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteQueen.png'
+    WhiteRook = r'/home/fpx/_projects/myChessArc/src/Interfaces/Console/assets/Pieces/WhiteRook.png'

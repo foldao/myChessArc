@@ -1,15 +1,23 @@
 import pygame
-from src.Interfaces.Console.GameObjects import UIColorsEnum, ObjectSizes, color_switch
+from src.Entities.ChessPieces.Pawn import Pawn
+from src.Entities.ChessPieces.Rook import Rook
+from src.Entities.ChessPieces.Horse import Horse
+from src.Entities.ChessPieces.King import King
+from src.Entities.ChessPieces.Queen import Queen
+from src.Entities.ChessPieces.Bishop import Bishop
+from src.Interfaces.Console.GameObjects import Assets, UIColorsEnum, ObjectSizes, color_switch
 from src.Interfaces.Console.GameMechanics import calculate_board_position_by_click
 
 
 class PygameInstance:
     window: pygame.surface.Surface
     is_highlighted: bool
+    pieces: dict[tuple[str, int], pygame.surface.Surface] = {}
 
     def run(self):
         pygame.init()
         self.window = pygame.display.set_mode(ObjectSizes.WINDOW_SIZE)
+        self.load_pieces()
         self.start_board()
         self.is_highlighted = False
         running = True
@@ -19,7 +27,7 @@ class PygameInstance:
                     case pygame.MOUSEBUTTONUP:
                         self.handle_mouse_click()
                     case pygame.KEYDOWN:
-                       pass
+                        pass
                 if event.type == pygame.QUIT:
                     running = False
                     break
@@ -37,6 +45,22 @@ class PygameInstance:
             *mouse_pos)
         self.highlight_list_of_positions([board_pos])
 
+    def load_pieces(self) -> None:
+        asts: dict[tuple[str, int], pygame.surface.Surface] = {}
+        asts[(Pawn.name, -1)] = pygame.image.load(Assets.WhitePawn)
+        asts[(Rook.name, -1)] = pygame.image.load(Assets.WhiteRook)
+        asts[(Queen.name, -1)] = pygame.image.load(Assets.WhiteQueen)
+        asts[(King.name, -1)] = pygame.image.load(Assets.WhiteKing)
+        asts[(Bishop.name, -1)] = pygame.image.load(Assets.WhiteBishop)
+        asts[(Horse.name, -1)] = pygame.image.load(Assets.WhiteKnightR)
+        asts[(Horse.name, 1)] = pygame.image.load(Assets.BlackKnightL)
+        asts[(Pawn.name, 1)] = pygame.image.load(Assets.BlackPawn)
+        asts[(Rook.name, 1)] = pygame.image.load(Assets.BlackRook)
+        asts[(Queen.name, 1)] = pygame.image.load(Assets.BlackQueen)
+        asts[(King.name, 1)] = pygame.image.load(Assets.BlackKing)
+        asts[(Bishop.name, 1)] = pygame.image.load(Assets.BlackBishop)
+        self.pieces = asts
+
     def start_board(self, highlighted: set[tuple[int, int]] = set()):
         pygame.draw.rect(self.window, UIColorsEnum.BACKGROUND,
                          (0, 0, *ObjectSizes.WINDOW_SIZE))
@@ -51,7 +75,11 @@ class PygameInstance:
                 # tiles[(i, j)] =
                 pygame.draw.rect(self.window, rect_color,
                                  (x, y, *ObjectSizes.TILE_SIZE))
+                self.window.blit(self.pieces[("Pawn", -color)], (x, y))
                 color *= -1
                 x += ObjectSizes.TILE_WIDTH
             y += ObjectSizes.TILE_HEIGHT
         pygame.display.update()
+
+    def start_match(self):
+        pass
