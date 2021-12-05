@@ -1,6 +1,7 @@
 class UIColorsEnum:
     BLACK = (226, 175, 78)
     WHITE = (255, 255, 255)
+    RED = (255, 0, 0)
     BACKGROUND = (95, 112, 120)
     HIGHLIGHT = (254, 252, 127)
 
