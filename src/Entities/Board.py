@@ -93,6 +93,13 @@ class Board:
             lambda x: self.state[x].get_color() == color, self.state)
         return {position: self.state[position].get_possible_moves(self, position) for position in pieces}
 
+    def get_all_possible_moves_from_piece_in_position(self, position: Position, validate: bool = False) -> list[Position]:
+        piece = self.get_piece_by_position(position)
+        if validate:
+            if not self.validate_move_is_from_the_correct_player(piece):
+                return []
+        return piece.get_possible_moves(self, position)
+
     def validate_move_is_from_the_correct_player(self, piece: AbstractPiece | None) -> bool:
         if piece == None:
             return False
@@ -100,7 +107,7 @@ class Board:
             case 1:
                 if piece.get_color() != PieceColorEnum.WHITE:
                     return False
-            case 2:
+            case 0:
                 if piece.get_color() != PieceColorEnum.BLACK:
                     return False
         return True
