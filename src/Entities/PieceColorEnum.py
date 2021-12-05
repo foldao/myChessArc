@@ -8,3 +8,6 @@ class PieceColorEnum(IntEnum):
 
     def get_opposing_color(self):
         return PieceColorEnum(self.value*(-1))
+
+    def __bool__(self) -> bool:
+        return bool(self.value)
